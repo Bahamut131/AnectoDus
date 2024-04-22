@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "631207885619",
+    "firebase_url": "https://anectodus-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "anectodus",
+    "storage_bucket": "anectodus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631207885619:android:bc3a4e3882827f25391c46",
+        "android_client_info": {
+          "package_name": "com.example.anectodus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOw9kdPBC-sW0a7fqR4BVO8KNtv_koXNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
