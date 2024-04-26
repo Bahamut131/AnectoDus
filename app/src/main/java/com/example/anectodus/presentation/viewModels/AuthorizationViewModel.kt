@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.anectodus.domain.repository.AuthRepository
 import com.example.anectodus.domain.useCase.authUseCase.SingInUseCase
 import com.example.anectodus.presentation.viewModels.states.AuthResult
 import kotlinx.coroutines.Dispatchers

@@ -19,4 +19,29 @@
             android:id="@+id/action_addJokeFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.anectodus.presentation.fragments.AccountFragment"
+        android:label="fragment_accaunt"
+        tools:layout="@layout/fragment_accaunt" />
+    <fragment
+        android:id="@+id/authorizationFragment"
+        android:name="com.example.anectodus.presentation.fragments.AuthorizationFragment"
+        android:label="fragment_authorization"
+        tools:layout="@layout/fragment_authorization" >
+        <action
+            android:id="@+id/action_authorizationFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_authorizationFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.anectodus.presentation.fragments.RegisterFragment"
+        android:label="RegisterFragment" >
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

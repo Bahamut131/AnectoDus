@@ -1,11 +1,12 @@
-package com.example.anectodus.data
+package com.example.anectodus.data.mapper
 
+import androidx.lifecycle.LiveData
 import com.example.anectodus.domain.entity.SomeJoke
 import javax.inject.Inject
 
 class JokeMapper @Inject constructor(){
 
-    fun mapDbModelToEntity(someJokeDbModel: SomeJokeDbModel) : SomeJoke{
+/*    fun mapDbModelToEntity(someJokeDbModel: SomeJokeDbModel) : SomeJoke{
         return SomeJoke(
             id = someJokeDbModel.id,
             text = someJokeDbModel.text,
@@ -23,7 +24,7 @@ class JokeMapper @Inject constructor(){
 
     fun mapListDBToEntityList(list : List<SomeJokeDbModel>) = list.map {
         mapDbModelToEntity(it)
-    }
+    }*/
 
 
 }

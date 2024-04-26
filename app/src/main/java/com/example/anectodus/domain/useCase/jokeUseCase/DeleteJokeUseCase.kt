@@ -4,9 +4,10 @@ import com.example.anectodus.domain.entity.SomeJoke
 import com.example.anectodus.domain.repository.JokeRepository
 import javax.inject.Inject
 
-class AddAccountJokeUseCase @Inject constructor(private val jokeRepository: JokeRepository){
+class DeleteJokeUseCase @Inject constructor(private val repository: JokeRepository){
 
     suspend operator fun invoke(someJoke: SomeJoke){
-        jokeRepository.addAccountJoke(someJoke)
+        repository.deleteJoke(someJoke)
     }
+
 }

@@ -15,5 +15,13 @@
 
     <string name="login_error">login error</string>
     <string name="password_error">password error</string>
+    <string name="password">password</string>
+    <string name="check_password">password</string>
+    <string name="username">login</string>
+    <string name="email">email</string>
+    <string name="sign_up">sign up</string>
+    <string name="sign_in">sign in</string>
+    <string name="password_error_same">password_error_same</string>
+    <string name="user_name_error">user_name_error</string>
 
 </resources>

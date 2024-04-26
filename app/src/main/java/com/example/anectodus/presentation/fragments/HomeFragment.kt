@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.anectodus.presentation.customView.CardLayoutManager
 import com.example.anectodus.databinding.FragmentHomeBinding
@@ -15,20 +19,27 @@ import com.example.anectodus.presentation.JokeApp
 import com.example.anectodus.presentation.viewModels.viewModelFactory.ViewModelFactory
 import com.example.anectodus.presentation.recyclerView.JokeAdapter
 import com.example.anectodus.presentation.viewModels.HomeFragmentViewModel
+import com.example.anectodus.presentation.viewModels.states.Content
+import com.example.anectodus.presentation.viewModels.states.HomeState
+import com.example.anectodus.presentation.viewModels.states.Initial
+import com.example.anectodus.presentation.viewModels.states.Loading
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 class HomeFragment : Fragment() {
 
-    lateinit var viewModel: HomeFragmentViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel by lazy {
+        ViewModelProvider(this,viewModelFactory).get(HomeFragmentViewModel::class.java)
+    }
 
     private val component by lazy {
         (requireActivity().application as JokeApp).component
     }
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
 
     private var _binding : FragmentHomeBinding?= null
     private val binding : FragmentHomeBinding
@@ -37,6 +48,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var jokeAdapter : JokeAdapter
     private lateinit var manager: RecyclerView.LayoutManager
+
+    private val scope = CoroutineScope(Dispatchers.Main)
 
     override fun onAttach(context: Context) {
         component.inject(this)
@@ -54,23 +67,32 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this,viewModelFactory).get(HomeFragmentViewModel::class.java)
-        launchViewModel()
+        launchFlow()
         setupRecyclerView()
     }
 
-    fun launchViewModel(){
-        viewModel.jokeList.observe(viewLifecycleOwner){
-            jokeAdapter.submitList(it)
+    fun launchFlow(){
+        scope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED){
+                viewModel.jokeList.collect{
+                    when(it){
+                        is Initial -> {binding.progressBar.isVisible = false}
+                        is Loading -> {binding.progressBar.isVisible = true}
+                        is Content -> {
+                            binding.progressBar.isVisible = false
+                            jokeAdapter.submitList(it.listJoke)
+                        }
+                    }
+                }
+            }
         }
     }
 
 
     fun setupRecyclerView(){
         jokeAdapter = JokeAdapter()
-        manager = CardLayoutManager()
+        manager = LinearLayoutManager(requireActivity())
         binding.rvJokeCardList.layoutManager = manager
-
         binding.rvJokeCardList.adapter = jokeAdapter
         setupSwipe()
     }

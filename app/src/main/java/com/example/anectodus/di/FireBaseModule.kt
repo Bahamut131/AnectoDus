@@ -5,6 +5,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.database
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -24,6 +26,12 @@ interface FireBaseModule {
         @ApplicationScope
         fun provideFirebaseDB(): FirebaseDatabase {
             return Firebase.database
+        }
+
+        @Provides
+        @ApplicationScope
+        fun provideFirebaseCloud(): FirebaseFirestore {
+            return Firebase.firestore
         }
 
     }

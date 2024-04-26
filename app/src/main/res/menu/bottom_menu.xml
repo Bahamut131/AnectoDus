@@ -12,7 +12,7 @@
         android:orderInCategory="2"/>
 
     <item
-        android:id="@+id/account"
+        android:id="@+id/accountFragment"
         android:title="@string/account"
         android:icon="@drawable/account"
         android:orderInCategory="3"/>

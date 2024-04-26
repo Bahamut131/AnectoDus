@@ -8,6 +8,7 @@ plugins {
     id("com.google.devtools.ksp") version "1.9.21-1.0.15"
     id ("androidx.navigation.safeargs")
     id("org.jetbrains.kotlin.kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -54,6 +55,10 @@ android {
 dependencies {
 
 
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.analytics)
     val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation ("androidx.navigation:navigation-ui-ktx:$nav_version")

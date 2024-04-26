@@ -1,7 +1,7 @@
 package com.example.anectodus.domain.repository
 
-import androidx.lifecycle.LiveData
 import com.example.anectodus.domain.entity.SomeJoke
+import kotlinx.coroutines.flow.Flow
 
 interface JokeRepository {
 
@@ -9,9 +9,9 @@ interface JokeRepository {
 
     suspend fun deleteJoke(someJoke: SomeJoke)
 
-    suspend fun getJoke(someJoke: SomeJoke) : SomeJoke
+    fun getJokeList() : Flow<List<SomeJoke>>
+    fun getJokeListForAccountPost() : Flow<List<SomeJoke>>
 
-    fun getJokeList() : LiveData<List<SomeJoke>>
 
 
 

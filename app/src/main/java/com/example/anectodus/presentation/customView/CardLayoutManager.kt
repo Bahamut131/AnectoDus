@@ -1,11 +1,7 @@
 package com.example.anectodus.presentation.customView
 
-import android.app.Application
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.anectodus.data.AppDataBase
-import com.example.anectodus.data.JokeListDao
-import javax.inject.Inject
 
 class CardLayoutManager  : RecyclerView.LayoutManager() {
 
