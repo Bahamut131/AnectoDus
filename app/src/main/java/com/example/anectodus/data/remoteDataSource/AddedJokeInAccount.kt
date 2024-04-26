@@ -1,10 +1,10 @@
-package com.example.anectodus.data
+package com.example.anectodus.data.remoteDataSource
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "likes_joke_in_account")
-data class LikesJokeInAccount (
+@Entity(tableName = "added_joke_in_account")
+class AddedJokeInAccount (
     @PrimaryKey(true)
     var id : Int,
     var text : String,

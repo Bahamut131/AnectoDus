@@ -20,6 +20,15 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/joke_card" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_joke_card_list"
+        app:layout_constraintEnd_toEndOf="@+id/rv_joke_card_list"
+        app:layout_constraintStart_toStartOf="@+id/rv_joke_card_list"
+        app:layout_constraintTop_toTopOf="@+id/rv_joke_card_list" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

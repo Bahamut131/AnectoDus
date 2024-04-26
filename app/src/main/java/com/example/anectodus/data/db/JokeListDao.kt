@@ -1,11 +1,11 @@
-package com.example.anectodus.data
+package com.example.anectodus.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.anectodus.domain.entity.SomeJoke
+import com.example.anectodus.data.entity.SomeJokeDbModel
 
 @Dao
 interface JokeListDao  {

@@ -91,17 +91,6 @@ class AuthorizationFragment : Fragment() {
 
     }
 
-    fun saveRefreshToken(context: Context,refreshToken: String?) {
-        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("refreshToken", refreshToken)
-        editor.apply()
-    }
-
-    fun getSavedRefreshToken(context: Context): String? {
-        val sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("refreshToken", null)
-    }
 
     override fun onResume() {
         super.onResume()

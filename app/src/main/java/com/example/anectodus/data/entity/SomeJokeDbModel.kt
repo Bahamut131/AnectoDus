@@ -1,4 +1,4 @@
-package com.example.anectodus.data
+package com.example.anectodus.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

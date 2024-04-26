@@ -14,7 +14,7 @@
         android:orientation="vertical"
         tools:context=".presentation.fragment.RegisterFragment">
 
-        <com.example.anectodus.presentation.auth.UserNameInput
+        <com.example.anectodus.presentation.customView.auth.UserNameInput
             android:id="@+id/sign_up_username"
             style="@style/Theme.AppCompat.DayNight.DarkActionBar"
             android:layout_width="match_parent"
@@ -33,9 +33,9 @@
                 android:hint="@string/username"
                 android:inputType="text" />
 
-        </com.example.anectodus.presentation.auth.UserNameInput>
+        </com.example.anectodus.presentation.customView.auth.UserNameInput>
 
-        <com.example.anectodus.presentation.auth.MailInput
+        <com.example.anectodus.presentation.customView.auth.MailInput
             android:id="@+id/sign_up_email"
             style="@style/Theme.AppCompat.DayNight.DarkActionBar"
             android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="text" />
 
-        </com.example.anectodus.presentation.auth.MailInput>
+        </com.example.anectodus.presentation.customView.auth.MailInput>
 
         <com.example.anectodus.presentation.customView.PasswordLayout
             android:id="@+id/sign_up_password_layout"

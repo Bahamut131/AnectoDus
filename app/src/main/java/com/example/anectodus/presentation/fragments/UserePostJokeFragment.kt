@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +22,14 @@ import com.example.anectodus.presentation.customView.CardLayoutManager
 import com.example.anectodus.presentation.recyclerView.JokeAdapter
 import com.example.anectodus.presentation.recyclerView.PostsAdapter
 import com.example.anectodus.presentation.viewModels.AccountViewModel
+import com.example.anectodus.presentation.viewModels.states.Content
+import com.example.anectodus.presentation.viewModels.states.HomeState
+import com.example.anectodus.presentation.viewModels.states.Initial
+import com.example.anectodus.presentation.viewModels.states.Loading
 import com.example.anectodus.presentation.viewModels.viewModelFactory.ViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -41,6 +51,7 @@ class UserePostJokeFragment : Fragment() {
     private lateinit var jokeAdapter : PostsAdapter
     private lateinit var manager: RecyclerView.LayoutManager
 
+    private val scope = CoroutineScope(Dispatchers.Main)
 
     override fun onAttach(context: Context) {
         component.inject(this)
@@ -63,7 +74,7 @@ class UserePostJokeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this,viewModelFactory).get(AccountViewModel::class.java)
         launchRecyclerView()
-        launchViewModel()
+        launchFlow()
     }
 
     private fun launchRecyclerView() {
@@ -74,9 +85,20 @@ class UserePostJokeFragment : Fragment() {
     }
 
 
-    private fun launchViewModel(){
-        viewModel.jokeList.observe(viewLifecycleOwner){
-            jokeAdapter.submitList(it)
+    private fun launchFlow(){
+        scope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED){
+                viewModel.jokeList.collect{
+                    when(it){
+                        is Initial -> {binding.progressBar2.isVisible = false}
+                        is Loading -> {binding.progressBar2.isVisible = true}
+                        is Content -> {
+                            binding.progressBar2.isVisible = false
+                            jokeAdapter.submitList(it.listJoke)
+                        }
+                    }
+                }
+            }
         }
     }
 

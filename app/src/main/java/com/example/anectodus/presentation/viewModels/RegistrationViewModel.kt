@@ -18,7 +18,7 @@ class RegistrationViewModel @Inject constructor(
 {
 
     suspend fun sendRequest(email : String,password: String,userName : String) : AuthResult {
-        return singUpUseCase.invoke(email = email, password = password,userName=userName)
+        return singUpUseCase.invoke(email = email, password = password,userName = userName)
     }
 
     suspend fun createUserDbTable(email: String,userName: String)  {
@@ -32,7 +32,7 @@ class RegistrationViewModel @Inject constructor(
     fun sendCredentials(email: String, password: String, userName : String) {
         viewModelScope.launch(Dispatchers.IO) {
             _authState.postValue(AuthResult.Loading)
-            val result = sendRequest(email, password,userName)
+            val result = sendRequest(email, password, userName)
             createUserDbTable(email,userName)
             _authState.postValue(result)
         }

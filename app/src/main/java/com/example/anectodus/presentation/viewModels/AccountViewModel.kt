@@ -5,19 +5,25 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.anectodus.domain.entity.SomeJoke
-import com.example.anectodus.domain.useCase.jokeUseCase.DeleteAccountJokeUseCase
-import com.example.anectodus.domain.useCase.jokeUseCase.GetAccountListJokUseCase
+import com.example.anectodus.domain.useCase.jokeUseCase.GetJokeListForAccountPostUseCase
+import com.example.anectodus.domain.useCase.jokeUseCase.GetListJokUseCase
+import com.example.anectodus.presentation.viewModels.states.Content
+import com.example.anectodus.presentation.viewModels.states.HomeState
+import com.example.anectodus.presentation.viewModels.states.Loading
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AccountViewModel  @Inject constructor(
-    val getAccountListJokUseCase: GetAccountListJokUseCase,
-    val deleteAccountJokeUseCase: DeleteAccountJokeUseCase,
+    val getJokeListForAccountPostUseCase: GetJokeListForAccountPostUseCase,
     val firebaseDatabase: FirebaseDatabase,
     val firebaseAuth: FirebaseAuth
 ): ViewModel() {
@@ -28,13 +34,14 @@ class AccountViewModel  @Inject constructor(
     init {
         takeUserName()
     }
-
-    val jokeList = getAccountListJokUseCase()
+    val jokeList : Flow<HomeState> = getJokeListForAccountPostUseCase()
+    .filter{it.isNotEmpty() }
+    .map { Content(listJoke = it) as HomeState }
+    .onStart { emit(Loading) }
 
     fun deleteJoke(someJoke: SomeJoke){
         viewModelScope.launch {
-            deleteAccountJokeUseCase.invoke(someJoke)
-
+            //deleteAccountJokeUseCase.invoke(someJoke)
         }
     }
 

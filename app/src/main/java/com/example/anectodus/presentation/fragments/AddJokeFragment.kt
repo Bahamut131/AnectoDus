@@ -46,23 +46,24 @@ class AddJokeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAddJokeBinding.inflate(inflater,container,false)
-        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView).visibility = View.GONE
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this,viewModelFactory)[AddJokeFragmentViewModel::class.java]
+
         launchViewModel()
         binding.button.setOnClickListener {
-           viewModel.addJoke(binding.editTextText.text.toString())
+            viewModel.addJoke(binding.editTextText.text.toString())
         }
+
     }
 
     private fun launchViewModel(){
         viewModel.state.observe(viewLifecycleOwner){
             when(it){
-                is Error -> {Toast.makeText(requireActivity().application,"Input correct value", Toast.LENGTH_SHORT).show()}
+                is Error -> {Toast.makeText(requireActivity(),"Input correct value", Toast.LENGTH_SHORT).show()}
                 is AddJoke -> {
                     it.addJoke
                     launchHomeFragment()
@@ -75,9 +76,8 @@ class AddJokeFragment : Fragment() {
         findNavController().navigate(R.id.action_addJokeFragment_to_homeFragment)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView).visibility = View.VISIBLE
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
-
 }

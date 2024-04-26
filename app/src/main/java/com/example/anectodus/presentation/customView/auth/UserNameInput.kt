@@ -1,4 +1,4 @@
-package com.example.anectodus.presentation.auth
+package com.example.anectodus.presentation.customView.auth
 
 import android.content.Context
 import android.util.AttributeSet

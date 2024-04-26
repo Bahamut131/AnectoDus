@@ -1,4 +1,4 @@
-package com.example.anectodus.data
+package com.example.anectodus.data.remoteDataSource
 
 import android.app.Application
 import com.example.anectodus.domain.entity.User
@@ -14,9 +14,6 @@ class AuthRepositoryImpl @Inject constructor(
     private val db : FirebaseDatabase,
     val application: Application
 ) : AuthRepository {
-
-    private var _refreshEmail : String ?= null
-    private var _refreshPassword: String ?= null
 
 
     override suspend fun signInWithEmailAndPassword(email: String, password: String, userName : String): AuthResult {

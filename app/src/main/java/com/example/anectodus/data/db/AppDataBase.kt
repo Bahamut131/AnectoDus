@@ -1,10 +1,10 @@
-package com.example.anectodus.data
+package com.example.anectodus.data.db
 
 import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.anectodus.domain.entity.SomeJoke
+import com.example.anectodus.data.entity.SomeJokeDbModel
 
 @Database(entities = [SomeJokeDbModel::class], version = 1, exportSchema = false)
 abstract class AppDataBase : RoomDatabase() {
@@ -15,9 +15,9 @@ abstract class AppDataBase : RoomDatabase() {
 
         const val NAME_DB = "JOKE_DB"
         private val LOCK = Any()
-        private var INSTANCE  : AppDataBase ?= null
+        private var INSTANCE  : AppDataBase?= null
 
-        fun newInstance(application: Application) : AppDataBase{
+        fun newInstance(application: Application) : AppDataBase {
 
             INSTANCE?.let { return it }
 
@@ -27,7 +27,8 @@ abstract class AppDataBase : RoomDatabase() {
                 val db = Room.databaseBuilder(
                     application,
                     AppDataBase::class.java,
-                    NAME_DB).fallbackToDestructiveMigration().build()
+                    NAME_DB
+                ).fallbackToDestructiveMigration().build()
 
                 INSTANCE = db
 

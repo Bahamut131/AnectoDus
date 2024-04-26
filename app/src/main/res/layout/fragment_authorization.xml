@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragments.AuthorizationFragment">
 
-    <com.example.anectodus.presentation.auth.PasswordInput
+    <com.example.anectodus.presentation.customView.auth.PasswordInput
         android:id="@+id/auth_password"
         style="@style/Theme.AppCompat.DayNight.DarkActionBar"
         android:layout_width="match_parent"
@@ -26,9 +26,9 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
 
-    </com.example.anectodus.presentation.auth.PasswordInput>
+    </com.example.anectodus.presentation.customView.auth.PasswordInput>
 
-    <com.example.anectodus.presentation.auth.MailInput
+    <com.example.anectodus.presentation.customView.auth.MailInput
         android:id="@+id/auth_mail"
         style="@style/Theme.AppCompat.DayNight.DarkActionBar"
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:inputType="text" />
 
-    </com.example.anectodus.presentation.auth.MailInput>
+    </com.example.anectodus.presentation.customView.auth.MailInput>
 
     <Button
         android:id="@+id/sign_in"
