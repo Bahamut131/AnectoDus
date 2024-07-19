@@ -1,15 +1,19 @@
 package com.example.anectodus.domain.entity
 
-import java.security.Timestamp
+import com.google.firebase.Timestamp
+
 
 data class SomeJoke(
-    var id : Int= ID,
+    var id : String= "",
     var text : String = "",
     var idFromUser : String = "",
+    val userLikePost: List<String> ?= null,
+    val timestamp: Timestamp ?= null,
     var likeJoke : Boolean = false
-    )
+)
 {
     companion object{
         const val ID = 0
     }
+
 }

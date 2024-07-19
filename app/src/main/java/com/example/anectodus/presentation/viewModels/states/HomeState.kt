@@ -6,6 +6,5 @@ sealed class HomeState {
 
 }
 object Loading : HomeState()
-object Initial : HomeState()
 
-class Content(val listJoke : List<SomeJoke>) : HomeState()
+class Content(val listJoke : List<SomeJoke>?) : HomeState()

@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
+    android:background="@color/item_bottom_color"
     >
 
     <LinearLayout
@@ -58,7 +59,8 @@
             android:layout_height="wrap_content"
             android:text="@string/publish"
             android:textAlignment="center"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:background="#977263C2"/>
     </LinearLayout>
 
 

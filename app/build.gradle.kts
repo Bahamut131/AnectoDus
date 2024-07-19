@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
     implementation(libs.firebase.analytics)
+    implementation(libs.androidx.preference)
     val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation ("androidx.navigation:navigation-ui-ktx:$nav_version")
@@ -66,6 +67,8 @@ dependencies {
     implementation( "com.google.dagger:dagger:2.51")
     kapt ("com.google.dagger:dagger-compiler:2.51")
 
+
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 
     val lifecycle_version = "2.7.0"
     // LiveData
@@ -81,6 +84,8 @@ dependencies {
     ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
 
+
+    api("com.theartofdev.edmodo:android-image-cropper:2.8.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

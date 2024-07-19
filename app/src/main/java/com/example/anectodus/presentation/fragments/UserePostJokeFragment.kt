@@ -11,20 +11,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import com.example.anectodus.R
-import com.example.anectodus.databinding.FragmentLikeJokeBinding
 import com.example.anectodus.databinding.FragmentUserePostJokeBinding
 import com.example.anectodus.presentation.JokeApp
-import com.example.anectodus.presentation.customView.CardLayoutManager
-import com.example.anectodus.presentation.recyclerView.JokeAdapter
 import com.example.anectodus.presentation.recyclerView.PostsAdapter
 import com.example.anectodus.presentation.viewModels.AccountViewModel
 import com.example.anectodus.presentation.viewModels.states.Content
-import com.example.anectodus.presentation.viewModels.states.HomeState
-import com.example.anectodus.presentation.viewModels.states.Initial
 import com.example.anectodus.presentation.viewModels.states.Loading
 import com.example.anectodus.presentation.viewModels.viewModelFactory.ViewModelFactory
 import kotlinx.coroutines.CoroutineScope
@@ -58,10 +50,6 @@ class UserePostJokeFragment : Fragment() {
         super.onAttach(context)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -88,9 +76,8 @@ class UserePostJokeFragment : Fragment() {
     private fun launchFlow(){
         scope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED){
-                viewModel.jokeList.collect{
+                viewModel.jokePostList.collect{
                     when(it){
-                        is Initial -> {binding.progressBar2.isVisible = false}
                         is Loading -> {binding.progressBar2.isVisible = true}
                         is Content -> {
                             binding.progressBar2.isVisible = false

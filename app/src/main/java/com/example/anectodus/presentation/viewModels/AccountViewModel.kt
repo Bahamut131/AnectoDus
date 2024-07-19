@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.anectodus.domain.entity.SomeJoke
+import com.example.anectodus.domain.useCase.jokeUseCase.GetJokeListForAccountLikeUseCase
 import com.example.anectodus.domain.useCase.jokeUseCase.GetJokeListForAccountPostUseCase
-import com.example.anectodus.domain.useCase.jokeUseCase.GetListJokUseCase
 import com.example.anectodus.presentation.viewModels.states.Content
 import com.example.anectodus.presentation.viewModels.states.HomeState
 import com.example.anectodus.presentation.viewModels.states.Loading
@@ -24,6 +24,7 @@ import javax.inject.Inject
 
 class AccountViewModel  @Inject constructor(
     val getJokeListForAccountPostUseCase: GetJokeListForAccountPostUseCase,
+    val getJokeListForAccountLikeUseCase: GetJokeListForAccountLikeUseCase,
     val firebaseDatabase: FirebaseDatabase,
     val firebaseAuth: FirebaseAuth
 ): ViewModel() {
@@ -34,15 +35,23 @@ class AccountViewModel  @Inject constructor(
     init {
         takeUserName()
     }
-    val jokeList : Flow<HomeState> = getJokeListForAccountPostUseCase()
+    val jokePostList : Flow<HomeState> = getJokeListForAccountPostUseCase()
     .filter{it.isNotEmpty() }
     .map { Content(listJoke = it) as HomeState }
     .onStart { emit(Loading) }
+
+
+    val jokeLikeList : Flow<HomeState> = getJokeListForAccountLikeUseCase()
+        .filter{it.isNotEmpty() }
+        .map { Content(listJoke = it) as HomeState }
+        .onStart { emit(Loading) }
+
 
     fun deleteJoke(someJoke: SomeJoke){
         viewModelScope.launch {
             //deleteAccountJokeUseCase.invoke(someJoke)
         }
+        val mutableList : MutableList<Int> = mutableListOf()
     }
 
     private fun takeUserName() {

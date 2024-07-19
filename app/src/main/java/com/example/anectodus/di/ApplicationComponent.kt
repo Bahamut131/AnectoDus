@@ -6,6 +6,7 @@ import com.example.anectodus.presentation.fragments.HomeFragment
 import com.example.anectodus.presentation.activity.MainActivity
 import com.example.anectodus.presentation.fragments.AccountFragment
 import com.example.anectodus.presentation.fragments.AuthorizationFragment
+import com.example.anectodus.presentation.fragments.LikeJokeFragment
 import com.example.anectodus.presentation.fragments.RegisterFragment
 import com.example.anectodus.presentation.fragments.UserePostJokeFragment
 import dagger.BindsInstance
@@ -22,6 +23,7 @@ interface ApplicationComponent {
     fun inject(fragment: AuthorizationFragment)
     fun inject(fragment: AccountFragment)
     fun inject(fragment: UserePostJokeFragment)
+    fun inject(fragment: LikeJokeFragment)
 
 
     @Component.Factory

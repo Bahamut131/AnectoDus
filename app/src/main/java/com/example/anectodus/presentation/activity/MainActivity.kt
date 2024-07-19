@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
-
         launchNavigation()
 
     }
@@ -60,11 +59,12 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun autoRegistration(navController : NavController){
-        val user = firebaseAuth.currentUser
-        if(user !=null){
-            navController.navigate(R.id.homeFragment)
-        }else{
+        //firebaseAuth.currentUser?.let { navController.navigate(R.id.homeFragment) } ?: navController.navigate(R.id.authorizationFragment)
+
+        if(firebaseAuth.currentUser == null){
             navController.navigate(R.id.authorizationFragment)
+        }else{
+            navController.navigate(R.id.homeFragment)
         }
     }
 

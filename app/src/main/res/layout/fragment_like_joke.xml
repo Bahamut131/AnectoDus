@@ -6,17 +6,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragments.LikeJokeFragment">
 
-   <TextView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:text = "aboba"
-       android:textSize="50sp"/>
-
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:textAlignment="center"
+      android:padding="5dp"
+      android:layout_marginTop="10dp"
+      >
   <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recycler_like_joke"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
        tools:listitem="@layout/joke_card"
        />
+  </ScrollView>
+  <ProgressBar
+      android:id="@+id/progressBar3"
+      style="?android:attr/progressBarStyle"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
 
 </FrameLayout>

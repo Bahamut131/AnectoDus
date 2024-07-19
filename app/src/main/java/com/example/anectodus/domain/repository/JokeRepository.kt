@@ -5,12 +5,16 @@ import kotlinx.coroutines.flow.Flow
 
 interface JokeRepository {
 
-    suspend fun addJoke(someJoke: SomeJoke)
+
+    suspend fun likeJoke(joke: SomeJoke)
+
+    suspend fun addJoke(jokeText: String)
 
     suspend fun deleteJoke(someJoke: SomeJoke)
 
-    fun getJokeList() : Flow<List<SomeJoke>>
+    fun getJokeList(lastVisibility : SomeJoke?) : Flow<List<SomeJoke>>
     fun getJokeListForAccountPost() : Flow<List<SomeJoke>>
+    fun getJokeListForAccountLike() : Flow<List<SomeJoke>>
 
 
 

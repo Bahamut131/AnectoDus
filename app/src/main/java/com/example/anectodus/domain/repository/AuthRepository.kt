@@ -1,5 +1,6 @@
 package com.example.anectodus.domain.repository
 
+import com.example.anectodus.domain.entity.User
 import com.example.anectodus.presentation.viewModels.states.AuthResult
 
 
@@ -9,6 +10,6 @@ interface AuthRepository {
 
     suspend fun signUpWithEmailAndPassword(email: String, password: String,userName : String): AuthResult
 
-    suspend fun addUserToDB(email: String, userName: String)
+    suspend fun addUserToDB(email: String, userName: String, userLikes : List<String>?)
 
 }

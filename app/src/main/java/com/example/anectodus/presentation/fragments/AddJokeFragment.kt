@@ -68,6 +68,8 @@ class AddJokeFragment : Fragment() {
                     it.addJoke
                     launchHomeFragment()
                 }
+
+                else -> {}
             }
         }
     }

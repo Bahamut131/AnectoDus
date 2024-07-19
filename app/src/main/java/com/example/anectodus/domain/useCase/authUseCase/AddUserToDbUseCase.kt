@@ -5,8 +5,8 @@ import javax.inject.Inject
 
 class AddUserToDbUseCase @Inject constructor(val repository: AuthRepository) {
 
-    suspend operator fun invoke(email: String,userName : String){
-        repository.addUserToDB(email, userName)
+    suspend operator fun invoke(email: String,userName : String,userLikes : List<String>?){
+        repository.addUserToDB(email, userName,userLikes)
     }
 
 }

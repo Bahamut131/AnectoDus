@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class RegistrationViewModel @Inject constructor(
     private val singUpUseCase: SingUpUseCase,
-    private val addUserToDbUseCase: AddUserToDbUseCase,
+    private val addUserToDbUseCase: AddUserToDbUseCase
 ) : ViewModel()
 {
 
@@ -22,8 +22,10 @@ class RegistrationViewModel @Inject constructor(
     }
 
     suspend fun createUserDbTable(email: String,userName: String)  {
-        addUserToDbUseCase.invoke(email = email,userName = userName)
+        addUserToDbUseCase.invoke(email = email,userName = userName, userLikes = null)
     }
+
+
 
     private val _authState = MutableLiveData<AuthResult>()
 
